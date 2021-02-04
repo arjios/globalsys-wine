@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +43,18 @@ public class LojaCepFaixaService {
 		entity = repository.save(entity);
 		return new LojaCepFaixaDTO(entity);
 	}
-	
+
+	@Transactional
+	public LojaCepFaixaDTO update(Long id, LojaCepFaixaDTO dto) {
+		try {
+			LojaCepFaixa entity = repository.getOne(id);
+			entity.setCodigo_loja(dto.getCodigo_loja());
+			entity.setFaixa_inicio(dto.getFaixa_inicio());
+			entity.setFaixa_fim(dto.getFaixa_fim());
+			entity = repository.save(entity);
+			return new LojaCepFaixaDTO(entity);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not Found: " + id);
+		}
+	}
 }
