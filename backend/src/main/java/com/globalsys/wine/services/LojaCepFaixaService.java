@@ -34,8 +34,15 @@ public class LojaCepFaixaService {
 		boolean boo = false;
 		List<LojaCepFaixa> list = repository.findAll();
 		for(LojaCepFaixa cat : list) {
-			if((cat.getFaixa_inicio() <= faixa_inicio && cat.getFaixa_fim() >= faixa_inicio) || 
-					(cat.getFaixa_inicio() <= faixa_fim && cat.getFaixa_fim() >= faixa_fim)) {
+			if(faixa_inicio > faixa_fim) {
+				Long aux = faixa_inicio;
+				faixa_inicio = faixa_fim;
+				faixa_fim = aux;				
+			}
+			if(faixa_inicio <= cat.getFaixa_inicio() && faixa_fim >= cat.getFaixa_fim()) {
+				boo = true;
+			}
+			if(faixa_inicio >= cat.getFaixa_inicio() && faixa_inicio <= cat.getFaixa_fim()) {
 				boo = true;
 			}
 		}
