@@ -1,6 +1,5 @@
 package com.globalsys.wine.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.globalsys.wine.entities.LojaCepFaixa;
+import com.globalsys.wine.dto.LojaCepFaixaDTO;
 import com.globalsys.wine.services.LojaCepFaixaService;
 
 @RestController
@@ -20,8 +19,8 @@ public class LojaCepFaixaResource {
 	private LojaCepFaixaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<LojaCepFaixa>> findAll() {
-		List<LojaCepFaixa> list = service.findAll();
+	public ResponseEntity<List<LojaCepFaixaDTO>> findAll() {
+		List<LojaCepFaixaDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
