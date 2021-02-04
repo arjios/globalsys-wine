@@ -31,5 +31,15 @@ public class LojaCepFaixaService {
 		LojaCepFaixa entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new LojaCepFaixaDTO(entity);
 	}
+
+	@Transactional
+	public LojaCepFaixaDTO insert(LojaCepFaixaDTO dto) {
+		LojaCepFaixa entity = new LojaCepFaixa();
+		entity.setCodigo_loja(dto.getCodigo_loja());
+		entity.setFaixa_inicio(dto.getFaixa_inicio());
+		entity.setFaixa_fim(dto.getFaixa_fim());
+		entity = repository.save(entity);
+		return new LojaCepFaixaDTO(entity);
+	}
 	
 }
