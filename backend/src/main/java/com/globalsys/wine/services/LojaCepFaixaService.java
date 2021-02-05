@@ -45,6 +45,9 @@ public class LojaCepFaixaService {
 			if(faixa_inicio >= cat.getFaixa_inicio() && faixa_inicio <= cat.getFaixa_fim()) {
 				boo = true;
 			}
+			if(faixa_fim >= cat.getFaixa_inicio() && faixa_fim <= cat.getFaixa_fim()) {
+				boo = true;
+			}
 		}
 		return boo;
 	}
